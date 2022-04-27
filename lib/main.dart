@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'dart:io' as io;
@@ -8,8 +10,26 @@ import "formobile.dart" if (dart.library.html) "forweb.dart";
 
 
 import 'mainscreen.dart';
+import 'MyDrawer.dart';
+import 'icomoon_icons.dart';
+import 'package:forweb/GradientIcon.dart';
+
+
+import 'package:reflectable/reflectable.dart';
+
+
+
+class Reflector extends Reflectable {
+  const Reflector()
+      : super(invokingCapability); // Request the capability to invoke methods.
+}
+const r = const Reflector();
+
+
 
 void main() {
+
+  initializeReflectable();
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService().initNotification();
 
@@ -53,6 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+  var codePoint=0xe146;
+  final myController = TextEditingController();
+  var myIcon = Icon(Icons.padding_outlined).icon;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      drawer: MyDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -67,9 +91,42 @@ class _MyHomePageState extends State<MyHomePage> {
           TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: '값을 입력하셈.',
+                // hintText: '0xe146',
+                labelText: '0xe146',
               ),
+
+              controller: myController,
             ),
+            ElevatedButton(onPressed: (){
+              setState(() {
+                myIcon = IconData(int.parse(myController.text), fontFamily: 'MaterialIcons');
+              });}, child: Text('버튼임')
+            ),
+
+            ElevatedButton(onPressed: (){
+              setState(() {
+
+
+                InstanceMirror im =  r.reflect(Icomoon);
+                print(im);
+                myIcon = Icon(Icons.remove).icon;
+              });}, child: Text('버튼임2')
+            )
+            ,
+            // Icon('Icons.add'),
+            // Icon(IconData(int.parse(myController.text), fontFamily: 'MaterialIcons')),
+            Icon(myIcon),
+            Icon(Icomoon.gd_andong),
+            GradientIcon(Icomoon.unbong, 50, LinearGradient(
+              colors: <Color>[
+                Colors.red,
+                Colors.yellow,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            ),
+            Icon(Icomoon.gyodang_jongro),
           MainScreen(),
           Text(
               '$_counter',
