@@ -15,21 +15,21 @@ import 'icomoon_icons.dart';
 import 'package:forweb/GradientIcon.dart';
 
 
-import 'package:reflectable/reflectable.dart';
+// import 'package:reflectable/reflectable.dart';
 
 
-
-class Reflector extends Reflectable {
-  const Reflector()
-      : super(invokingCapability); // Request the capability to invoke methods.
-}
-const r = const Reflector();
+//
+// class Reflector extends Reflectable {
+//   const Reflector()
+//       : super(invokingCapability); // Request the capability to invoke methods.
+// }
+// const r = const Reflector();
 
 
 
 void main() {
 
-  initializeReflectable();
+  // initializeReflectable();
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService().initNotification();
 
@@ -107,8 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
               setState(() {
 
 
-                InstanceMirror im =  r.reflect(Icomoon);
-                print(im);
+                // InstanceMirror im =  r.reflect(Icomoon);
+                // print(im);
                 myIcon = Icon(Icons.remove).icon;
               });}, child: Text('버튼임2')
             )

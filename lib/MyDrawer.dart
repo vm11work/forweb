@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+// import 'Min'
 import 'package:forweb/Maps/MapPage_mind.dart';
 import 'package:forweb/Maps/MapPage_body.dart';
 import 'package:forweb/Maps/MapPage_work.dart';
